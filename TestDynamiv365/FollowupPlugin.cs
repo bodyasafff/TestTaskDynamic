@@ -33,10 +33,15 @@ namespace TestDynamiv365
 
                 try
                 {
-
-                    var check = entity.Contains("telephone1");
-                    entity["crbc6_isvalidate"] = check;
-
+                    if (entity.Contains("telephone1")) {
+                        if (String.IsNullOrEmpty(entity["telephone1"].ToString())) {
+                            entity["crbc6_isvalidate"] = false;
+                        }
+                        else
+                        {
+                            entity["crbc6_isvalidate"] = true;
+                        }                
+                    }                  
                 }
 
                 catch (FaultException<OrganizationServiceFault> ex)
